@@ -8,11 +8,13 @@ public class BluePolymorph extends Polymorph{
 	BluePolymorph(int x, int y) {
 		super(x, y);
 	}
-
+	
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.blue);
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(x, y, WIDTH, HEIGHT);
+		//System.out.println("drawing");
+		
 	}
 	
 }
