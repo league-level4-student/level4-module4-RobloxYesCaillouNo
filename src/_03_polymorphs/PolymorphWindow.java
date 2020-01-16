@@ -18,12 +18,11 @@ public class PolymorphWindow extends JPanel implements ActionListener{
     private JFrame window;
     private Timer timer;
     
-    Polymorph bluePoly;
-    Polymorph redPoly;
-    Polymorph movePoly;
+
    
     ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
- 
+    
+   
     
     public static void main(String[] args) {
    	 new PolymorphWindow().buildWindow();
@@ -36,10 +35,14 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    	 window.pack();
    	 window.setVisible(true);
-   	 polymorphs.add(bluePoly);
-   	 bluePoly = new BluePolymorph(50, 50);
-   	 redPoly = new RedMorph(100, 50);
-   	movePoly = new MovingMorph(100, 50);
+   	 polymorphs.add(new BluePolymorph(50, 50));
+   	 polymorphs.add(new RedMorph(100, 50));
+   	 polymorphs.add(new MovingMorph(100, 50));
+   	 polymorphs.add(new CirclePoly(70,111));
+   	 polymorphs.add(new imagPoly(222, 111));
+   	 polymorphs.add(new MouseFollowPoly(111,111));
+   	 polymorphs.add(new JOptionPanePoly(222, 66));
+   	 
    	 
    	 
    	 
@@ -53,18 +56,52 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 g.fillRect(0, 0, 500, 500);
    	
    	 //draw polymorph
-   	 redPoly.draw(g);
-   	 bluePoly.draw(g);
-   	 movePoly.draw(g);
-
+   	for (Polymorph redPoly : polymorphs) {
+   		redPoly.draw(g);
+	}
+   	 for (Polymorph bluePoly : polymorphs) {
+		bluePoly.draw(g);
+	}
+   	 for (Polymorph movePoly : polymorphs) {
+		movePoly.draw(g);
+	}
+   	 for (Polymorph CirclePoly : polymorphs) {
+		CirclePoly.draw(g);
+	}
+   	 for (Polymorph MouseFollowPoly : polymorphs) {
+		MouseFollowPoly.draw(g);
+	}
+   	 for (Polymorph imagPoly : polymorphs) {
+   		 imagPoly.draw(g);
+	}
+   	 for (Polymorph JOptionPanePoly : polymorphs) {
+		JOptionPanePoly.draw(g);
+	}
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
    	 repaint();
-   	 bluePoly.update();
-   	 redPoly.update();
-   	movePoly.update();
-   	 
+    	for (Polymorph redPoly : polymorphs) {
+       		 redPoly.update();
+    	}
+       	 for (Polymorph bluePoly : polymorphs) {
+    		bluePoly.update();
+    	}
+       	 for (Polymorph movePoly : polymorphs) {
+    		movePoly.update();
+       	 }
+       	 for (Polymorph CirclePoly : polymorphs) {
+			CirclePoly.update();
+		}
+       	 for (Polymorph MouseFollowPoly : polymorphs) {
+			MouseFollowPoly.update();
+		}
+       	 for (Polymorph imagPoly : polymorphs) {
+			imagPoly.update();
+		}
+       	 for (Polymorph JOptionPanePoly : polymorphs) {
+			JOptionPanePoly.update();
+		}
     }
 }
