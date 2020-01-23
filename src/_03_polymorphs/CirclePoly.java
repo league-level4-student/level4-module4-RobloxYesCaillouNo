@@ -4,18 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class CirclePoly extends Polymorph{
-
+int circle =  0;
 	CirclePoly(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
+	
 	}
 
 
 	@Override
 	public void update() {
-	x = (int) (x + Math.cos(360));
-	y = (int) (y + Math.sin(360));
-
+	
+		setX((int) (getX() + Math.cos(circle)* 100.00));
+	
+		setY( (int) (getY() + Math.sin(circle)* 100.00));
+		circle++;
 	}
 	
 	@Override

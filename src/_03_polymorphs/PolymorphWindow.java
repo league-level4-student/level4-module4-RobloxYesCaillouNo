@@ -5,25 +5,26 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PolymorphWindow extends JPanel implements ActionListener{
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener{
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
-    
+    public static BufferedImage img; 
     private JFrame window;
-    private Timer timer;
-    
+    private Timer timer; 
+   
+ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
 
-   
-    ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
-    
-   
-    
     public static void main(String[] args) {
    	 new PolymorphWindow().buildWindow();
     }
@@ -35,6 +36,7 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    	 window.pack();
    	 window.setVisible(true);
+   	 window.addMouseMotionListener(this);
    	 polymorphs.add(new BluePolymorph(50, 50));
    	 polymorphs.add(new RedMorph(100, 50));
    	 polymorphs.add(new MovingMorph(100, 50));
@@ -48,8 +50,14 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 
    	 timer = new Timer(1000 / 30, this);
    	 timer.start();
+     try {
+		img = ImageIO.read(this.getClass().getResourceAsStream("thing.jpg"));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
-    
+   
     public void paintComponent(Graphics g){
     //draw background
    	 g.setColor(Color.LIGHT_GRAY);
@@ -104,4 +112,17 @@ public class PolymorphWindow extends JPanel implements ActionListener{
 			JOptionPanePoly.update();
 		}
     }
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+	polymorphs.get(5).setX(e.getX());
+	polymorphs.get(5).setY(e.getY());
+	}
 }
