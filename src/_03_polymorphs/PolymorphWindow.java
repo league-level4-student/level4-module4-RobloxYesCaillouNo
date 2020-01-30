@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener{
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener,MouseListener{
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
     public static BufferedImage img; 
@@ -28,7 +30,6 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
     public static void main(String[] args) {
    	 new PolymorphWindow().buildWindow();
     }
-    
     public void buildWindow(){
    	 window = new JFrame("IT'S MORPHIN' TIME!");
    	 window.add(this);
@@ -50,7 +51,8 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
    	 
    	 timer = new Timer(1000 / 30, this);
    	 timer.start();
-     try {
+   
+   	 try {
 		img = ImageIO.read(this.getClass().getResourceAsStream("thing.jpg"));
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -124,5 +126,38 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
 		// TODO Auto-generated method stub
 	polymorphs.get(5).setX(e.getX());
 	polymorphs.get(5).setY(e.getY());
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getX() >= polymorphs.get(6).getX() && e.getY() >= polymorphs.get(6).getY() && e.getX() <=
+				polymorphs.get(6).getWidth() && e.getY() <= polymorphs.get(6).getHeight()) {
+			JOptionPane.showMessageDialog(null, "Congrats! You get absoultely nothing!");
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
