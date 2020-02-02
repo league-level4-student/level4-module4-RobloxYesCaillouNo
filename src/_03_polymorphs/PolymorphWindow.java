@@ -25,7 +25,7 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
     private JFrame window;
     private Timer timer; 
    
-ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
+    ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
 
     public static void main(String[] args) {
    	 new PolymorphWindow().buildWindow();
@@ -38,6 +38,7 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
    	 window.pack();
    	 window.setVisible(true);
    	 window.addMouseMotionListener(this);
+   	 window.addMouseListener(this);
    	 polymorphs.add(new BluePolymorph(50, 50));
    	 polymorphs.add(new RedMorph(100, 50));
    	 polymorphs.add(new MovingMorph(100, 50));
@@ -66,53 +67,17 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
    	 g.fillRect(0, 0, 500, 500);
    	
    	 //draw polymorph
-   	for (Polymorph redPoly : polymorphs) {
-   		redPoly.draw(g);
-	}
-   	 for (Polymorph bluePoly : polymorphs) {
-		bluePoly.draw(g);
-	}
-   	 for (Polymorph movePoly : polymorphs) {
-		movePoly.draw(g);
-	}
-   	 for (Polymorph CirclePoly : polymorphs) {
-		CirclePoly.draw(g);
-	}
-   	 for (Polymorph MouseFollowPoly : polymorphs) {
-		MouseFollowPoly.draw(g);
-	}
-   	 for (Polymorph imagPoly : polymorphs) {
-   		 imagPoly.draw(g);
-	}
-   	 for (Polymorph JOptionPanePoly : polymorphs) {
-		JOptionPanePoly.draw(g);
+   	for (Polymorph Poly : polymorphs) {
+   		Poly.draw(g);
 	}
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
    	 repaint();
-    	for (Polymorph redPoly : polymorphs) {
-       		 redPoly.update();
+    	for (Polymorph Plox : polymorphs) {
+       		 Plox.update();
     	}
-       	 for (Polymorph bluePoly : polymorphs) {
-    		bluePoly.update();
-    	}
-       	 for (Polymorph movePoly : polymorphs) {
-    		movePoly.update();
-       	 }
-       	 for (Polymorph CirclePoly : polymorphs) {
-			CirclePoly.update();
-		}
-       	 for (Polymorph MouseFollowPoly : polymorphs) {
-			MouseFollowPoly.update();
-		}
-       	 for (Polymorph imagPoly : polymorphs) {
-			imagPoly.update();
-		}
-       	 for (Polymorph JOptionPanePoly : polymorphs) {
-			JOptionPanePoly.update();
-		}
     }
 
 	@Override
@@ -150,7 +115,7 @@ ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getX() >= polymorphs.get(6).getX() && e.getY() >= polymorphs.get(6).getY() && e.getX() <=
-				polymorphs.get(6).getWidth() && e.getY() <= polymorphs.get(6).getHeight()) {
+			polymorphs.get(6).getX()+polymorphs.get(6).getWidth() && e.getY() <= polymorphs.get(6).getY()+polymorphs.get(6).getHeight()) {
 			JOptionPane.showMessageDialog(null, "Congrats! You get absoultely nothing!");
 		}
 	}
