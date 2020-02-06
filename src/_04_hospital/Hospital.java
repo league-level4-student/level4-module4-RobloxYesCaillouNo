@@ -30,11 +30,35 @@ public class Hospital {
 	}
 
 	public void assignPatientsToDoctors() {
-		// TODO Auto-generated method stub
-		doctors.get(0).assignPatient();
+		// TODO Auto-generated method stubs
+		
+			for (int i = 0; i < patients.size(); i++) {
+			if (i < 3) {
+				try {
+					doctors.get(0).assignPatient(patients.get(i));
+				} catch (DoctorFullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}	
+			else if (i < 6 ) {
+				try {
+					doctors.get(1).assignPatient(patients.get(i));
+				} catch (DoctorFullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else  {
+				try {
+					doctors.get(2).assignPatient(patients.get(i));
+				} catch (DoctorFullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			}
 	}
-	
-	
-	
 	
 }
